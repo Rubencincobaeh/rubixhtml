@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <style>
+        .carousel-container {
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel img {
+            width: 15cm;
+            height: 20cm;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .carousel img:nth-child(n) {
+            flex-shrink: 0;
+            flex-basis: 100%;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel" id="carousel">
+            <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/04/Halo-Master-Chief-and-Cortana.jpeg" alt="Imagen 1">
+            <img src="https://cdn-images.dzcdn.net/images/artist/9b743c89c0065819b7b61bfd6132faa7/1900x1900-000000-80-0-0.jpg" alt="Imagen 2">
+            <img src="https://yt3.googleusercontent.com/M9_6SV5sRw8Im5hzsERPrX2VsfDapYbLklYVxg4vqTRzMKBxrnlEb8KqBOgYza8RIpqf6pwaBZo=s900-c-k-c0x00ffffff-no-rj" alt="Imagen 3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiE-PlDusYL3t9pcMd3oZJrRoTu_IuZKgNzg&s" alt="Imagen 4">
+            <img src="https://dulceriasvazquez.com/cdn/shop/files/239_1db9d1f2-cd0e-4e21-a4b2-c355705ec830.png?v=1693239034" alt="Imagen 5">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrXC2G7Q-8EGQJzYUXwnsRZZi_K03XVHS8g&s" alt="Imagen 6">
+        </div>
+        <div class="buttons">
+            <button onclick="moveCarousel(-1)">&#10094;</button>
+            <button onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const totalImages = 6;
+        const carousel = document.getElementById('carousel');
+
+        function moveCarousel(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = totalImages - 1;
+            } else if (currentIndex >= totalImages) {
+                currentIndex = 0;
+            }
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+    </script>
+</body>
+</html>
